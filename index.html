@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(
+        fetch("main.wasm"),
+        go.importObject
+      ).then((result) => {
+        go.run(result.instance);
+      });
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Longest Pokemon Words Chain</title>
+  </head>
+  <body>
+    <h1>最長ポケモンしりとり</h1>
+    <div class="container">
+      <div class="input">
+        <div class="message">最初のポケモンを選択してね</div>
+        <label for="no-input">図鑑No.</label>
+        <input
+          name="no-input"
+          type="number"
+          id="no-input"
+          min="1"
+          max="1025"
+          step="1"
+          value="1"
+        />
+        <label for="name-select">名前:</label>
+        <select name="name-select" id="name-select"></select>
+        <button>遊ぶ</button>
+      </div>
+      <div id="result"></div>
+    </div>
+    <footer>hamao©2024</footer>
+    <script src="index.js"></script>
+  </body>
+</html>
