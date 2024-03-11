@@ -1,3 +1,5 @@
+//go:build ignore
+
 package main
 
 import (
@@ -89,7 +91,7 @@ func main() {
 	}
 
 	type result struct {
-		Start  int    `json:"start"`
+		Start  Word    `json:"start"`
 		Path   []Word `json:"chain_words"`
 		Length int    `json:"length"`
 	}
@@ -102,7 +104,7 @@ func main() {
 		for _, v := range p {
 			chainWords = append(chainWords, noMap[v])
 		}
-		results = append(results, result{i, chainWords, len(p)})
+		results = append(results, result{noMap[i], chainWords, len(p)})
 		fmt.Printf("start: %d; time: %v\n", i, time.Since(s))
 	}
 	var wg sync.WaitGroup
